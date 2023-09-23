@@ -19,13 +19,19 @@ const getResy = (type) => {
 
 const getAllReservations = async (req, res) => {
   try {
-    const Resy = getResy(req.params.type);
-    const allReservations = await Resy.find();
+    const allFlights = await Flight.find();
+    const allHotels = await Hotel.find();
+    const allRestaurants = await Restaurant.find();
+    const allCars = await Car.find();
+    const allActivities = await Activity.find();
+    
+    const allReservations = [].concat(allFlights, allHotels, allRestaurants, allCars, allActivities);
     res.json(allReservations);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
 
 const getReservationDetails = async (req, res) => {
   try {

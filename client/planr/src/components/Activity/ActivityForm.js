@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
 import ApiService from '../../ApiService';
 import '../ReservationForm/ReservationForm.css';
 
@@ -9,8 +9,8 @@ export default function ActivityForm() {
       dateTime: '',
       dressCode: ''
     });
-
-    const navigate = useNavigate();
+    
+    const navigate = useNavigate(); 
   
     const handleInputChange = (event) => {
       const { name, value } = event.target;
@@ -20,58 +20,57 @@ export default function ActivityForm() {
       });
     };
 
-    const handleSubmit = async (event) => {
-      event.preventDefault();
+    const handleSubmit = async (e) => {
+      e.preventDefault();
       try {
-        await ApiService.createReservation('activity', formData);
-        navigate('/itinerary');
+        const response = await ApiService.createReservation('activity', formData);
+        if (response) {
+          navigate('/itinerary'); 
+        }
       } catch (error) {
         console.error("There was a problem adding the activity reservation:", error);
       }
     };
 
-  return (
-    <div className="Form">
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="activity">Activity</label>
+    return (
+      <div className="Form">
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="activity">Activity</label>
+              <input
+                type="text"
+                id="activity"
+                name="activity"
+                value={formData.activity}
+                onChange={handleInputChange}
+                required
+              /> 
+            </div>
+            <div>
+            <label htmlFor="dateTime">Date & Time</label>
             <input
-              type="text"
-              id="activity"
-              name="activity"
-              value={formData.activity}
+              type="datetime-local"
+              id="dateTime"
+              name="dateTime"
+              value={formData.dateTime}
               onChange={handleInputChange}
               required
-            /> 
-          </div>
-          <div>
-          <label htmlFor="dateTime">Date & Time</label>
-          <input
-            type="datetime-local"
-            id="dateTime"
-            name="dateTime"
-            value={formData.dateTime}
-            onChange={handleInputChange}
-            required
-            />
-          </div>
-          <div>
-            <label htmlFor="dressCode">Dress Code</label>
-            <input
-              type="text"
-              id="dressCode"
-              name="dressCode"
-              value={formData.dressCode}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div>
-            <button className="AddButton" type="submit" >Add Reservation</button>
-          </div>
-        </form>  
-  </div>
-
-  )};
-
-
-  
+              />
+            </div>
+            <div>
+              <label htmlFor="dressCode">Dress Code</label>
+              <input
+                type="text"
+                id="dressCode"
+                name="dressCode"
+                value={formData.dressCode}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <button className="AddButton" type="submit" >Add Reservation</button>
+            </div>
+          </form>  
+    </div>
+    );
+}

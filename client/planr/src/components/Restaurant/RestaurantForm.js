@@ -26,8 +26,10 @@ export default function RestaurantForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await ApiService.createReservation('restaurant', formData);
-      navigate('/itinerary');
+      const response = await ApiService.createReservation('restaurant', formData);
+      if (response) {
+        navigate('/itinerary'); 
+      }
     } catch (error) {
       console.error("There was a problem adding the restaurant reservation:", error);
     }

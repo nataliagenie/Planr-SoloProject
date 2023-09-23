@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { format } from 'date-fns';
 import ApiService from '../../ApiService';
 import '../ReservationForm/ReservationForm.css';
-
 
 
 export default function CarForm() {
@@ -15,6 +13,7 @@ export default function CarForm() {
     dropoffDate:''
 
   });
+
   const navigate = useNavigate();
 
   const handleInputChange = (event) => {
@@ -28,8 +27,10 @@ export default function CarForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await ApiService.createReservation('car', formData);
-      navigate('/itinerary');
+      const response = await ApiService.createReservation('car', formData);
+      if (response) {
+        navigate('/itinerary'); 
+      }
     } catch (error) {
       console.error("There was a problem adding the car reservation:", error);
     }

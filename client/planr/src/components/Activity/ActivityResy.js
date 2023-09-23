@@ -1,17 +1,13 @@
 import React from 'react';
-import { format } from 'date-fns';
 
-export default function Activity({ event}) {
+export default function Activity({ data }) {
 
   return (
-    <div className="Event">
-       <li key={event.id}>
-          <h3>{event.title}</h3>
-          <div className='DateVenue'>
-          <p>{format(new Date(event.dateTime), 'MMM dd, yyyy h:mm a')}</p>
-          <p> {event.venue}</p>
-          </div>
-        </li>
+    <div className="Activity">
+      <h3>{data.activity}</h3>
+      <p>{new Date(data.dateTime).toLocaleString()}</p>
+      <p> {data.dressCode}</p>
     </div>
   )
 }
+

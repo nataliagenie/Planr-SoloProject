@@ -26,8 +26,10 @@ export default function HotelForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await ApiService.createReservation('hotel', formData);
-      navigate('/itinerary');
+      const response = await ApiService.createReservation('hotel', formData);
+      if (response) {
+        navigate('/itinerary'); 
+      }
     } catch (error) {
       console.error("There was a problem adding the hotel reservation:", error);
     }
