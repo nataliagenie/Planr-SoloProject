@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
-// mongoose.connect('mongodb://127.0.0.1:27017/Events')
-mongoose.connect('mongodb://127.0.0.1:27017')
+mongoose.connect('mongodb://127.0.0.1:27017/planr')
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error('Error connecting to MongoDB:', err));
 
@@ -12,7 +11,7 @@ const flightSchema = new mongoose.Schema({
     required: true,
   },
   destination: {
-    type: Date,
+    type: String,
     required: true,
   },
   confNumber: {
@@ -24,26 +23,26 @@ const flightSchema = new mongoose.Schema({
     required: true,
   },
   dateTime: {
-    type: String,
+    type: Date,
     required: true,
   }
 });
 
 const hotelSchema = new mongoose.Schema({
+  hotelName: {
+    type: String,
+    required: true,
+  },
   confNumber: {
     type: String,
     required: true,
   },
-  hotelName: {
+  ciDateTime: {
     type: Date,
     required: true,
   },
-  ciDateTime: {
-    type: String,
-    required: true,
-  },
   coDateTime: {
-    type: String,
+    type: Date,
     required: true,
   }
 });
@@ -73,7 +72,7 @@ const carSchema = new mongoose.Schema({
     required: true,
   },
   rentalCompany: {
-    type: Date,
+    type: String,
     required: true,
   },
   carType: {
@@ -105,9 +104,19 @@ const activitySchema = new mongoose.Schema({
   }
 });
 
-const Flight = mongoose.model('Event', flightSchema);
-const Hotel = mongoose.model('Event', hotelSchema);
-const Restaurant = mongoose.model('Event', restaurantSchema);
-const Car = mongoose.model('Event', carSchema);
-const Activity = mongoose.model('Event', activitySchema);
-module.exports = Event;
+const Flight = mongoose.model('Flight', flightSchema);
+const Hotel = mongoose.model('Hotel', hotelSchema);
+const Restaurant = mongoose.model('Restaurant', restaurantSchema);
+const Car = mongoose.model('Car', carSchema);
+const Activity = mongoose.model('Activity', activitySchema);
+
+module.exports = {
+  Flight,
+  Hotel,
+  Restaurant,
+  Car,
+  Activity
+};
+
+
+

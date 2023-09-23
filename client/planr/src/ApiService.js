@@ -1,14 +1,75 @@
-import React from 'react';
+const url = 'http://localhost:3060';
 
-const url = 'http://localhost:3000'
+const ApiService = {
+  
+  fetchAllReservations: async () => {
+    try {
+      const response = await fetch(`${url}/itinerary`);
+      if (!response.ok) throw new Error('Network response was not ok');
+      return await response.json();
+    } catch (error) {
+      console.error("There was a problem fetching reservations:", error);
+      throw error;
+    }
+  },
 
-export async function getEvents () {
-  try {
-    const response = await fetch(`${url}/`);
-    const data = await response.json()
-    console.log('data in getEvents service: ', data)
-    return data;
-  } catch (error) {
-    console.log(error)
+  fetchReservationDetails: async (type, id) => {
+    try {
+      const response = await fetch(`${url}/reservation/${type}/${id}`);
+      if (!response.ok) throw new Error('Network response was not ok');
+      return await response.json();
+    } catch (error) {
+      console.error("There was a problem fetching reservation details:", error);
+      throw error;
+    }
+  },
+
+  createReservation: async (type, data) => {
+    try {
+      const response = await fetch(`${url}/addReservation/${type}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) throw new Error('Network response was not ok');
+      return await response.json();
+    } catch (error) {
+      console.error("There was a problem creating the reservation:", error);
+      throw error;
+    }
+  },
+
+  updateReservation: async (type, id, data) => {
+    try {
+      const response = await fetch(`${url}/reservation/${type}/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) throw new Error('Network response was not ok');
+      return await response.json();
+    } catch (error) {
+      console.error("There was a problem updating the reservation:", error);
+      throw error;
+    }
+  },
+
+  deleteReservation: async (type, id) => {
+    try {
+      const response = await fetch(`${url}/reservation/${type}/${id}`, {
+        method: 'DELETE',
+      });
+      if (!response.ok) throw new Error('Network response was not ok');
+      return await response.json();
+    } catch (error) {
+      console.error("There was a problem deleting the reservation:", error);
+      throw error;
+    }
   }
-}
+};
+
+export default ApiService;
