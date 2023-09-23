@@ -1,7 +1,8 @@
 import Header from '../../components/Header'
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import Reservations from "../../components/Reservations/Reservations"
+// import Reservations from "../../components/Reservations/Reservations"
+import Activity from "../../components/Activity/ActivityResy"
 import ApiService from "../../ApiService";
 import '../Itinerary/Itinerary.css';
 
@@ -9,6 +10,7 @@ import '../Itinerary/Itinerary.css';
 export default function Itinerary() {
 
 const [reservations, setReservations] = useState([])
+console.log(reservations)
 useEffect(() => {
   const fetchData = async () => {
     try {
@@ -28,15 +30,19 @@ useEffect(() => {
   };
 
   return (
-    <div className="Itinerary">
+     <div className="Itinerary">
       <Header />
       <h1 className='Title'>Your Itinerary</h1>
-       <div className="Reservations">
+       {/* <div className="Reservations"> */}
       {reservations.map(reservation => (
-        <Reservations key={reservation._id} data={reservation} />
+      //   <Reservations key={reservation._id} data={reservation} />
+      <h1 key={reservation._id}>{reservation.dressCode}</h1>
       ))}
-      </div>
+      {/* <h1>{reservations}</h1> */}
+      {/* </div> */}
       <button className="ItineraryButton" type="button" onClick={handleEventClick}> Add to Itinerary</button>
     </div>
+   
+   
   );
 };
