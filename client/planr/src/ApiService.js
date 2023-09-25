@@ -69,7 +69,43 @@ const ApiService = {
       console.error("There was a problem deleting the reservation:", error);
       throw error;
     }
-  }
+  },
+
+  login: async (username, password) => {
+    try {
+      const response = await fetch(`${url}/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+      if (!response.ok) throw new Error('Network response was not ok');
+      return await response.json();
+    } catch (error) {
+      console.error("There was a problem logging in:", error);
+      throw error;
+    }
+  },
+
+  register: async (username, password) => {
+    try {
+      const response = await fetch(`${url}/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+      if (!response.ok) throw new Error('Network response was not ok');
+      return await response.json();
+    } catch (error) {
+      console.error("There was a problem registering:", error);
+      throw error;
+    }
+  },
 };
+
+
 
 export default ApiService;

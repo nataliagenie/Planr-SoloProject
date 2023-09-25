@@ -1,4 +1,5 @@
-const { Flight, Hotel, Restaurant, Car, Activity } = require('../Models/model');
+const { Flight, Hotel, Restaurant, Car, Activity, User } = require('../Models/model');
+
 
 const getResy = (type) => {
   switch (type) {
@@ -86,10 +87,44 @@ const deleteReservation = async (req, res) => {
   }
 };
 
-module.exports = {
-  getAllReservations,
-  getReservationDetails,
-  addReservation,
-  updateReservation,
-  deleteReservation
+const register = async (req, res) => {
+  try {
+      const { username, password } = req.body;
+      const newUser = new User({ username, password });
+      await newUser.save();
+
+      res.status(201).send({ success: true, message: "User registered" });
+  } catch (err) {
+      res.status(500).send({ success: false, message: err.message });
+  }
 };
+
+const login = async (req, res) => {
+  try {
+      const { username, password } = req.body;
+      const user = await User.findOne({ username });
+
+      if (!user || !(await user.comparePassword(password))) {
+          return res.status(401).send({ success: false, message: "Incorrect username or password" });
+      }
+
+      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+      res.send({ success: true, token });
+  } catch (err) {
+      res.status(500).send({ success: false, message: err.message });
+  }
+}
+
+
+
+
+module.exports = {
+    getAllReservations,
+    getReservationDetails,
+    addReservation,
+    updateReservation,
+    deleteReservation,
+    register,
+    login
+};
+

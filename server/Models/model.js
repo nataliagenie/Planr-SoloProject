@@ -1,8 +1,32 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 mongoose.connect('mongodb://127.0.0.1:27017/planr')
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error('Error connecting to MongoDB:', err));
+
+const userSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  password: {
+    type: String,
+    required: true
+  }
+});
+
+userSchema.pre('save', async function(next) {
+  if (this.isModified('password') || this.isNew) {
+      this.password = await bcrypt.hash(this.password, 10);
+  }
+  next();
+});
+
+userSchema.methods.comparePassword = async function(pass) {
+  return bcrypt.compare(pass, this.password);
+};
 
 
 const flightSchema = new mongoose.Schema({
@@ -109,14 +133,18 @@ const Hotel = mongoose.model('Hotel', hotelSchema);
 const Restaurant = mongoose.model('Restaurant', restaurantSchema);
 const Car = mongoose.model('Car', carSchema);
 const Activity = mongoose.model('Activity', activitySchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = {
   Flight,
   Hotel,
   Restaurant,
   Car,
-  Activity
+  Activity,
+  User
 };
+
+
 
 
 

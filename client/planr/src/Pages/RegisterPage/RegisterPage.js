@@ -1,10 +1,10 @@
 import React,  { useState }  from 'react';
 import { useNavigate } from 'react-router-dom';
 import Logo from "../../images/Logo.png";
+import '../RegisterPage/RegisterPage.css'
 import ApiService from '../../ApiService';
-import '../LoginPage/LoginPage.css'
 
-export default function LoginPage () {
+export default function RegisterPage () {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -14,7 +14,7 @@ export default function LoginPage () {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = await ApiService.login(username, password);
+      const data = await ApiService.register(username, password);
       if (data.success) {
         localStorage.setItem('jwtToken', data.token);
         navigate('/itinerary');
@@ -22,15 +22,14 @@ export default function LoginPage () {
         setError(data.message);
       }
     } catch (error) {
-      setError("Login failed. Please try again.");
+      setError("Registration failed. Please try again.");
     }
   };
-  
 
   return (
-    <div className="LoginPage">
+    <div className="RegisterPage">
       <img src={Logo} alt="logo" width={500} height={500} />
-        <form onSubmit={handleSubmit} className='LoginFields'>
+        <form onSubmit={handleSubmit} className='RegisterFields'>
           <input
             type="text"
             placeholder="Username"
@@ -45,7 +44,7 @@ export default function LoginPage () {
             onChange={e => setPassword(e.target.value)}
           />
           <br></br>
-          <button className="LoginButton" type="submit">Login</button>
+          <button className="RegisterButton" type="submit">Register</button>
         </form>
         {error && <p>{error}</p>}
       {/* <button className="EnterButton" type="button" onClick={handleEnterClick}>

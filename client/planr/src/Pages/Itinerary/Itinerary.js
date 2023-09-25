@@ -24,10 +24,16 @@ useEffect(() => {
   fetchData();
 }, []);
 
+
   const navigate = useNavigate();
   const handleEventClick = () => {
     navigate('/addReservation');
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem('jwtToken');
+    navigate('/'); 
+}
 
   return (
      <div className="Itinerary">
@@ -40,9 +46,12 @@ useEffect(() => {
       ))}
       {/* <h1>{reservations}</h1> */}
       {/* </div> */}
-      <button className="ItineraryButton" type="button" onClick={handleEventClick}> Add to Itinerary</button>
+      <button className="Button" type="button" onClick={handleEventClick}> Add to Itinerary</button>
+      <br></br>
+      <button className="Button" onClick={handleLogout}>Logout</button>
     </div>
    
    
   );
 };
+

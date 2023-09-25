@@ -1,4 +1,4 @@
-.LoginPage {
+.RegisterPage {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,7 +12,7 @@
   text-align: center;
 }
 
-.LoginButton {
+.RegisterButton {
   background-color: white;      
   border: 2px solid #000;      
   border-radius: 10px;                  
@@ -24,11 +24,11 @@
   font-size: 25px;            
 }
 
-.LoginButton:hover {
+.RegisterButton:hover {
   background-color: #000;       
   color: white;                 
 }
 
-.LoginFields{
+.RegisterFields{
   font-family: "Futura";
 }
