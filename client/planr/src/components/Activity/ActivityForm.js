@@ -26,7 +26,7 @@ export default function ActivityForm() {
         const response = await ApiService.createReservation('activity', formData);
         if (response) {
           navigate('/itinerary'); 
-        }
+      }
       } catch (error) {
         console.error("There was a problem adding the activity reservation:", error);
       }
@@ -58,7 +58,7 @@ export default function ActivityForm() {
               />
             </div>
             <div>
-              <label htmlFor="dressCode">Dress Code</label>
+            <label htmlFor="dressCode">Dress Code</label>
               <input
                 type="text"
                 id="dressCode"

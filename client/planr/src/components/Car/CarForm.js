@@ -69,6 +69,7 @@ export default function CarForm() {
               name="carType"
               value={formData.carType}
               onChange={handleInputChange}
+              required
             /> 
           </div>
           <div>

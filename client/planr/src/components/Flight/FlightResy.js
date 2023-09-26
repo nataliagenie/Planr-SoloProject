@@ -1,15 +1,30 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
+import ApiService from "../../ApiService";
 
-export default function Flight ({ data }) {
+export default function Flight() {
+  const [flights, setFlights] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await ApiService.fetchReservationsByType('flight');
+        setFlights(data.data);
+      } catch (error) {
+        console.error("Error fetching reservations:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
-    <div className="Flight">
-      <h3>{data.origin}</h3>
-      <p> {data.destination}</p>
-      <p> {data.confNumber}</p>
-      <p>{data.flightNum}</p>
-      <p>{new Date(data.dateTime).toLocaleString()}</p>
-    </div>
-  )
+    <div className="Flights">
+      {flights.map((flight) => (
+        <div key={flight._id}>
+          <h3>Flight {flight.origin} -- {flight.destination} </h3>
+          <p>{flight.flightNum}</p>
+        </div>
+      ))}
+    </div> 
+  );
 }
-

@@ -1,8 +1,7 @@
 import Header from '../../components/Header'
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-// import Reservations from "../../components/Reservations/Reservations"
-import Activity from "../../components/Activity/ActivityResy"
+import Reservations from "../../components/Reservations/Reservations"
 import ApiService from "../../ApiService";
 import '../Itinerary/Itinerary.css';
 
@@ -39,13 +38,8 @@ useEffect(() => {
      <div className="Itinerary">
       <Header />
       <h1 className='Title'>Your Itinerary</h1>
-       {/* <div className="Reservations"> */}
-      {reservations.map(reservation => (
-      //   <Reservations key={reservation._id} data={reservation} />
-      <h1 key={reservation._id}>{reservation.dressCode}</h1>
-      ))}
-      {/* <h1>{reservations}</h1> */}
-      {/* </div> */}
+      <Reservations />
+
       <button className="Button" type="button" onClick={handleEventClick}> Add to Itinerary</button>
       <br></br>
       <button className="Button" onClick={handleLogout}>Logout</button>
@@ -54,4 +48,3 @@ useEffect(() => {
    
   );
 };
-

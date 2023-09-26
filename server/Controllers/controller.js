@@ -33,6 +33,20 @@ const getAllReservations = async (req, res) => {
   }
 };
 
+const getReservationsByType = async (req, res) => {
+  try {
+    const Resy = getResy(req.params.type);
+    const reservations = await Resy.find();
+    if (!reservations || reservations.length === 0) {
+      res.status(200).json({ message: 'No reservations found for this type', data: [] });
+    } else {
+      res.json({ data: reservations });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 
 const getReservationDetails = async (req, res) => {
   try {
@@ -120,6 +134,7 @@ const login = async (req, res) => {
 
 module.exports = {
     getAllReservations,
+    getReservationsByType,
     getReservationDetails,
     addReservation,
     updateReservation,

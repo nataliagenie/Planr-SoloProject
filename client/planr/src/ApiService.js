@@ -13,6 +13,17 @@ const ApiService = {
     }
   },
 
+  fetchReservationsByType: async (type) => {
+    try {
+      const response = await fetch(`${url}/reservation/${type}`);
+      if (!response.ok) throw new Error('Network response was not ok');
+      return await response.json();
+    } catch (error) {
+      console.error("There was a problem fetching reservation details:", error);
+      throw error;
+    }
+  },
+
   fetchReservationDetails: async (type, id) => {
     try {
       const response = await fetch(`${url}/reservation/${type}/${id}`);

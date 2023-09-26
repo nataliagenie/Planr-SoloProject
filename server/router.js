@@ -6,6 +6,7 @@ const User = require('./Models/model');
 
 const {
   getAllReservations,
+  getReservationsByType,
   getReservationDetails,
   addReservation,
   updateReservation,
@@ -15,6 +16,8 @@ const {
 } = require('./Controllers/controller');
 
 router.get('/itinerary', getAllReservations);
+
+router.get('/reservation/:type', getReservationsByType);
 
 router.get('/reservation/:type/:id', getReservationDetails);
 

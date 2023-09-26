@@ -1,14 +1,33 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
+import ApiService from "../../ApiService";
 
-export default function Activity({ data }) {
+export default function Activity() {
+  const [activities, setActivities] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await ApiService.fetchReservationsByType('activity');
+        setActivities(data.data);
+      } catch (error) {
+        console.error("Error fetching reservations:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
-    // <div className="Activity">
-    //   <h3>{data.activity}</h3>
-    //   <p>{new Date(data.dateTime).toLocaleString()}</p>
-    //   <p> {data.dressCode}</p>
-    // </div>
-    <h1>{data}</h1>
+    <div className="Activities">
+      {activities.map((activity) => (
+        <div key={activity._id}>
+          <h3>{activity.activity} 💃🏻🕺</h3>
+          <p>{activity.dressCode}</p>
+        </div>
+      ))}
+    </div> 
   )
 }
 
+
+ 
