@@ -9,8 +9,10 @@ export default function HotelForm() {
   const [formData, setFormData] = useState({
     hotelName: '',
     confNumber: '',
-    ciDateTime: '',
-    coDateTime: ''
+    ciDate: '',
+    ciTime: '',
+    coDate: '',
+    coTime: ''
   });
 
   const navigate = useNavigate();
@@ -62,28 +64,50 @@ export default function HotelForm() {
             />
           </div>
           <div>
-          <label htmlFor="ciDateTime">Check-in Date and Time</label>
+          <label htmlFor="ciDate">Check-in Date</label>
           <input
-            type="datetime-local"
-            id="ciDateTime"
-            name="ciDateTime"
-            value={formData.ciDateTime}
-            onChange={handleInputChange}
-            required
+              type="date"
+              id="ciDate"
+              name="ciDate"
+              value={formData.ciDate}
+              onChange={handleInputChange}
+              required
             />
           </div>
-          <div>
-          <label htmlFor="coDateTime">Check-out Date and Time</label>
+        <div>
+          <label htmlFor="ciTime">Check-in Time </label>
           <input
-          type="datetime-local"
-          id="coDateTime"
-          name="coDateTime"
-          value={formData.coDateTime}
-          onChange={handleInputChange}
-          required
-            />
+              type="time"
+              id="ciTime"
+              name="ciTime"
+              value={formData.ciTime}
+              onChange={handleInputChange}
+              required
+          />
+        </div>
+          <div>
+          <label htmlFor="coDate">Check-out Date</label>
+          <input
+              type="date"
+              id="coDate"
+              name="coDate"
+              value={formData.coDate}
+              onChange={handleInputChange}
+              required
+              />
           </div>
           <div>
+          <label htmlFor="=coTime">Check-out Time</label>
+          <input
+              type="time"
+              id="coTime"
+              name="coTime"
+              value={formData.coTime}
+              onChange={handleInputChange}
+              required
+          />
+        </div>
+        <div>
             <button className="AddButton" type="submit">Add Reservation</button>
           </div>
         </form>

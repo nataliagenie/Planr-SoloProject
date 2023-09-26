@@ -21,8 +21,9 @@ export default function Flight() {
     <div className="Flights">
       {flights.map((flight) => (
         <div key={flight._id}>
-          <h3>Flight {flight.origin} -- {flight.destination} </h3>
+          <h3>Flight {flight.origin} → {flight.destination} 🛫 </h3>
           <p>{flight.flightNum}</p>
+          <p>{flight.time}</p>
         </div>
       ))}
     </div> 

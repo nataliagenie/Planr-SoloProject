@@ -8,22 +8,6 @@ import '../Itinerary/Itinerary.css';
 
 export default function Itinerary() {
 
-const [reservations, setReservations] = useState([])
-console.log(reservations)
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const data = await ApiService.fetchAllReservations();
-      setReservations(data);
-    } catch (error) {
-      console.error("Error fetching reservations:", error);
-    }
-  };
-
-  fetchData();
-}, []);
-
-
   const navigate = useNavigate();
   const handleEventClick = () => {
     navigate('/addReservation');

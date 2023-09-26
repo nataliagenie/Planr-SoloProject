@@ -23,8 +23,7 @@ export default function Car() {
         <div key={car._id}>
           <h3>{car.rentalCompany} 🚗</h3>
           <p>{car.carType}</p>
-          <p>{car.pickupDate}</p>
-          <p>{car.dropoffDate}</p>
+          <p>{car.pickupTime}</p>
         </div>
       ))}
     </div> 

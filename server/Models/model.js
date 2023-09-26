@@ -46,8 +46,12 @@ const flightSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  dateTime: {
+  date: {
     type: Date,
+    required: true,
+  },
+  time: {
+    type: String,
     required: true,
   }
 });
@@ -61,12 +65,20 @@ const hotelSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  ciDateTime: {
+  ciDate: {
     type: Date,
     required: true,
   },
-  coDateTime: {
+  coDate: {
     type: Date,
+    required: true,
+  },
+  ciTime: {
+    type: String,
+    required: true,
+  },
+  coTime: {
+    type: String,
     required: true,
   }
 });
@@ -76,8 +88,12 @@ const restaurantSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  dateTime: {
+  date: {
     type: Date,
+    required: true,
+  },
+  time: {
+    type: String, 
     required: true,
   },
   cuisine: {
@@ -104,10 +120,18 @@ const carSchema = new mongoose.Schema({
     required: false,
   },
   pickupDate: {
+    type: Date,
+    required: true,
+  },
+  pickupTime: {
     type: String,
     required: true,
   },
   dropoffDate: {
+    type: Date,
+    required: true,
+  },
+  dropoffTime: {
     type: String,
     required: true,
   }
@@ -118,8 +142,12 @@ const activitySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  dateTime: {
+  date: {
     type: Date,
+    required: true,
+  },
+  time: {
+    type: String, 
     required: true,
   },
   dressCode: {

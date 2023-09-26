@@ -23,6 +23,7 @@ export default function Activity() {
         <div key={activity._id}>
           <h3>{activity.activity} 💃🏻🕺</h3>
           <p>{activity.dressCode}</p>
+          <p>{activity.time}</p>
         </div>
       ))}
     </div> 

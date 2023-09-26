@@ -10,8 +10,9 @@ export default function CarForm() {
     rentalCompany: '',
     carType: '',
     pickupDate:'',
-    dropoffDate:''
-
+    pickupTime:'',
+    dropoffDate:'',
+    dropoffTime:'',
   });
 
   const navigate = useNavigate();
@@ -73,27 +74,49 @@ export default function CarForm() {
             /> 
           </div>
           <div>
-          <label htmlFor="pickupDate">Pick-up Date and Time</label>
+          <label htmlFor="pickupDate">Pick-up Date</label>
           <input
-            type="datetime-local"
-            id="pickupDate"
-            name="pickupDate"
-            value={formData.pickupDate}
-            onChange={handleInputChange}
-            required
+              type="date"
+              id="pickupDate"
+              name="pickupDate"
+              value={formData.pickupDate}
+              onChange={handleInputChange}
+              required
             />
+          </div>
+        <div>
+          <label htmlFor="pickupTime">Pick-up Time </label>
+          <input
+              type="time"
+              id="pickupTime"
+              name="pickupTime"
+              value={formData.pickupTime}
+              onChange={handleInputChange}
+              required
+          />
+        </div>
+          <div>
+          <label htmlFor="dropoffDate">Drop-off Date</label>
+          <input
+              type="date"
+              id="dropoffDate"
+              name="dropoffDate"
+              value={formData.dropoffDate}
+              onChange={handleInputChange}
+              required
+              />
           </div>
           <div>
-          <label htmlFor="dropoffDate">Drop-off Date and Time</label>
+          <label htmlFor="dropoffTime">Drop-off Time</label>
           <input
-          type="datetime-local"
-          id="dropoffDate"
-          name="dropoffDate"
-          value={formData.dropoffDate}
-          onChange={handleInputChange}
-          required
-            />
-          </div>
+              type="time"
+              id="dropoffTime"
+              name="dropoffTime"
+              value={formData.dropoffTime}
+              onChange={handleInputChange}
+              required
+          />
+        </div>
           <div>
             <button className="AddButton" type="submit" >Add Reservation</button>
           </div>

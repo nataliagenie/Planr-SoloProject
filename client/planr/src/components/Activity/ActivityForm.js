@@ -6,7 +6,8 @@ import '../ReservationForm/ReservationForm.css';
 export default function ActivityForm() {
     const [formData, setFormData] = useState({
       activity: '',
-      dateTime: '',
+      date:'',
+      time:'',
       dressCode: ''
     });
     
@@ -47,14 +48,25 @@ export default function ActivityForm() {
               /> 
             </div>
             <div>
-            <label htmlFor="dateTime">Date & Time</label>
-            <input
-              type="datetime-local"
-              id="dateTime"
-              name="dateTime"
-              value={formData.dateTime}
-              onChange={handleInputChange}
-              required
+              <label htmlFor="date">Date</label>
+              <input
+                type="date"
+                id="date"
+                name="date"
+                value={formData.date}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="time">Time</label>
+              <input
+                type="time"
+                id="time"
+                name="time"
+                value={formData.time}
+                onChange={handleInputChange}
+                required
               />
             </div>
             <div>

@@ -25,9 +25,9 @@ export default function Reservations ({ data }) {
 
     return (
       <div className="Reservations">
-      {/* <FlightResy />; */}
-      {/* <HotelResy />; */}
-      {/* <RestaurantResy/>; */}
+      <FlightResy />
+      <HotelResy />
+      <RestaurantResy />
       <CarResy />
       <ActivityResy />
       </div>
