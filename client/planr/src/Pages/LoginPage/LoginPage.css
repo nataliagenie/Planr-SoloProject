@@ -32,3 +32,19 @@
 .LoginFields{
   font-family: "Futura";
 }
+
+.LoginFields input {
+  font-family: 'Futura', sans-serif;
+  font-size: 18px;
+  padding: 12px 20px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+
+.LoginFields input[type="text"]:focus, .LoginFields input[type="password"]:focus {
+  outline: none;
+  border-color: #9ecaed;
+  box-shadow: 0 0 10px #9ecaed;
+}

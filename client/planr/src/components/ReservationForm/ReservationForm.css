@@ -33,24 +33,43 @@
     color: white;                 
   }
 
-  .AddButton{
-    background-color: rgba(64,147,164,255);  
-    color: white;       
-    border: 2px solid #014463;      
-    border-radius: 10px;                  
-    font-family: 'Futura', sans-serif;              
-    cursor: pointer;
-    margin-top: 20px;  
-    width: 300px; 
-    height: 40px; 
-    font-size: 20px; 
-
-  }
+ 
   
 .Form {
   font-family: "Futura";
   font-size: 25px;
   padding: 30px;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
+  }
+  
+.Form label, .Form input {
+  font-family: 'Futura', sans-serif;
+  font-size: 20px; 
+  display: block; 
+  margin-right: 20px;
+  flex-grow: 1;
 }
 
+.Form div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px; 
+}
+
+.AddButton{
+  background-color: rgba(64,147,164,255);  
+  color: white;       
+  border: 2px solid #014463;      
+  border-radius: 10px;                  
+  font-family: 'Futura', sans-serif;              
+  cursor: pointer;
+  margin-top: 20px;  
+  width: 300px; 
+  height: 40px; 
+  font-size: 20px; 
+  align-items: center;
+  margin: 0;
+}
