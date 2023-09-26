@@ -3,25 +3,10 @@ import HotelResy from "../Hotel/HotelResy"
 import RestaurantResy from "../Restaurant/RestaurantResy"
 import CarResy from "../Car/CarResy"
 import ActivityResy from "../Activity/ActivityResy"
+// import { useNavigate } from 'react-router-dom';
 
 
-// export default function Reservations ({ data }) {
-//   switch (data.type) {
-//     case 'flight':
-//       return <FlightResy data={data} />;
-//     case 'hotel':
-//       return <HotelResy data={data} />;
-//     case 'restaurant':
-//       return <RestaurantResy data={data} />;
-//     case 'car':
-//       return <CarResy data={data} />;
-//     case 'activity':
-//       return <ActivityResy data={data} />;
-//     default:
-//       return null;
-//   }
-// }
-export default function Reservations ({ data }) {
+export default function Reservations () {
 
     return (
       <div className="Reservations">
@@ -30,7 +15,7 @@ export default function Reservations ({ data }) {
       <RestaurantResy />
       <CarResy />
       <ActivityResy />
-      </div>
+      </div> 
   )
 }
 

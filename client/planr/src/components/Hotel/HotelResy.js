@@ -5,6 +5,19 @@ import ApiService from "../../ApiService";
 export default function Hotel() {
   const [hotels, setHotels] = useState([]);
 
+  function capitalizeEveryWord(string) {
+    return string.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
+  }
+
+  function formatTime(time) {
+    let [hour, minutes] = time.split(":");
+    let ampm = +hour >= 12 ? 'PM' : 'AM';
+    
+    hour = +hour % 12 || 12; 
+  
+    return `${hour}:${minutes} ${ampm}`;
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -21,8 +34,8 @@ export default function Hotel() {
     <div className="Hotels">
       {hotels.map((hotel) => (
         <div key={hotel._id}>
-          <h3>{hotel.hotelName} 🛏️</h3>
-          <p>{hotel.ciTime}</p>
+          <h3>{capitalizeEveryWord(hotel.hotelName)} 🛏️</h3>
+          <p>{formatTime(hotel.ciTime)}</p>
         </div>
       ))}
     </div> 

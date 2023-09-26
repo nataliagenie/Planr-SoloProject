@@ -47,9 +47,6 @@ export default function RegisterPage () {
           <button className="RegisterButton" type="submit">Register</button>
         </form>
         {error && <p>{error}</p>}
-      {/* <button className="EnterButton" type="button" onClick={handleEnterClick}>
-        Enter
-      </button> */}
     </div>
   );
 }
