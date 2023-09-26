@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import ApiService from "../../ApiService";
 
 export default function Flight() {
+
   const [flights, setFlights] = useState([]);
 
   function capitalize(string) {
@@ -37,7 +38,7 @@ export default function Flight() {
   }, []);
 
   return (
-    <div className="Flights">
+    <div className="Resy">
       {flights.map((flight) => (
         <div key={flight._id}>
           <h3>Flight {capitalize(flight.origin)} → {capitalize(flight.destination)} 🛫 </h3>

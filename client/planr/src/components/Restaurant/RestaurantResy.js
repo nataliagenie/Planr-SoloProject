@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import ApiService from "../../ApiService";
 
 export default function Restaurant() {
+ 
   const [restaurants, setRestaurants] = useState([]);
 
   function capitalizeEveryWord(string) {
@@ -31,7 +32,7 @@ export default function Restaurant() {
   }, []);
 
   return (
-    <div className="Restaurants">
+    <div className="Resy">
       {restaurants.map((restaurant) => (
         <div key={restaurant._id}>
           <h3>{capitalizeEveryWord(restaurant.restName)} 🍴</h3>

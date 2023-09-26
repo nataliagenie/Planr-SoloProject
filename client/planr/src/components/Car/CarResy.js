@@ -31,7 +31,7 @@ export default function Car() {
   }, []);
 
   return (
-    <div className="Cars">
+    <div className="Resy">
       {cars.map((car) => (
         <div key={car._id}>
           <h3>{capitalizeEveryWord(car.rentalCompany)} 🚗</h3>

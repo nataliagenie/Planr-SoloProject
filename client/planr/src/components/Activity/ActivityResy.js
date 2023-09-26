@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import ApiService from "../../ApiService";
 
 export default function Activity() {
+
   const [activities, setActivities] = useState([]);
 
   function capitalizeEveryWord(string) {
@@ -23,11 +24,7 @@ export default function Activity() {
     const fetchData = async () => {
       try {
         const data = await ApiService.fetchReservationsByType('activity');
-        setActivities(data.data.sort((a, b) => {
-          let dateA = new Date(`${a.date} ${a.time}`);
-          let dateB = new Date(`${b.date} ${b.time}`);
-          return dateA - dateB;
-        }));
+        setActivities(data.data);
       } catch (error) {
         console.error("Error fetching reservations:", error);
       }
@@ -36,7 +33,7 @@ export default function Activity() {
   }, []);
 
   return (
-    <div className="Activities">
+    <div className="Resy">
       {activities.map((activity) => (
         <div key={activity._id}>
           <h3>{capitalizeEveryWord(activity.activity)} 💃🏻🕺</h3>
